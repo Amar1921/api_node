@@ -9,7 +9,7 @@ export const Navbar=()=>(
 export const Slider =() =>(
     <div className=" d-sm-block">
         <a className="btn btn-light btn-lg toggle"  id="menu-toggle"><i className="fa fa-bars"> </i></a>
-        <div className="bg-light" id="sidebar-wrapper">
+        <div className="bg-light pl-2" id="sidebar-wrapper">
            {/* <img src={fav} alt="logo" style={{widht:"20px", height:"20px"}}/>*/}
             <a className="btn btn-light btn-lg toggle" id="menu-close"><i className="fa fa-arrow-left"> </i></a>
             <h3>Favourites</h3>
