@@ -16,9 +16,9 @@ function App() {
     /****************FUNCTION FETCH API***************/
    async function fetchApi(a,b) {
                       await axios.get(URL)
-                    .then((response)=>setProduct(response.data.slice(a,b)))
-                    .catch((e)=>{
-                        const errorFetch = `Erreur request ${e} !!!!`;
+                          .then((response)=>setProduct(response.data.slice(a,b)))
+                           .catch((e)=>{
+                           const errorFetch = `Erreur request ${e} !!!!`;
                          setErro(errorFetch)
                     })
                }
@@ -87,7 +87,7 @@ function App() {
                 </ul>
             </nav>
                {/****************************LIST OF PRODUCTS************************/}
-               <div className="row d-flex justify-content-center justify-content-lg-around api ">
+               <div className="row d-flex justify-content-center justify-content-lg-around api api2 ">
                    {resultat}
                </div>
            </div>

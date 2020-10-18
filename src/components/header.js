@@ -19,6 +19,4 @@ export const Slider =() =>(
     </div>
 )
                 /************FUNCTION API ERROR******************/
-export const ErrorApi = () =>(
-        <h3 className="text-danger text-center">Fail to connect Server !</h3>
-          )
+export const ErrorApi = () =><h3 className="text-danger text-center">Connection to server failed !</h3>

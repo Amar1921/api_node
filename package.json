@@ -27,7 +27,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "server": "nodemon src/backend/server.js"
-
   },
   "eslintConfig": {
     "extends": "react-app"
