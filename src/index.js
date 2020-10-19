@@ -8,10 +8,10 @@ import App from './App';
 
 ReactDOM.render(
     <Router>
-         <Slider/>
-         <Navbar/>
+        <Slider/>
+        <Navbar/>
         <Route exact path='/api/flyers/' component={App}/>
     </Router>,
 
-  document.getElementById('root')
+    document.getElementById('root')
 );

@@ -15,10 +15,10 @@ app.use(cors({
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }))
 
-app.get('/api/flyers',(req, res)=>{
+app.get('/api/flyers', (req, res) => {
     res.set('Content-Type', 'text/json')
     res.json(data)
 })
 
 
-app.listen(PORT, ()=>console.log(`Server running on port ${PORT}`))
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
