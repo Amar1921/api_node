@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import $ from 'jquery'
 import 'bootstrap'
+import Spinner from "reactstrap/es/Spinner";
 import 'bootstrap/dist/css/bootstrap.css'
 import './style/App.css';
 import axios from 'axios';
@@ -10,31 +11,31 @@ import {ErrorApi} from './components/header'
 function App() {
 
     const [product, setProduct] = useState([]);
-    const [error,setErro] = useState("")
+    const [spinner, setSpinner] = useState("");
+    const [error,setError] = useState("")
     const URL = 'http://localhost:3001/api/flyers';
-
+//
     /****************FUNCTION FETCH API***************/
    async function fetchApi(a,b) {
+                      setError("")
+                      setSpinner(()=>(<Spinner animation="grow" size="lg" />))
                       await axios.get(URL)
                     .then((response)=>setProduct(response.data.slice(a,b)))
+                          .then(()=>(setSpinner("")))
                     .catch((e)=>{
                         const errorFetch = `Erreur request ${e} !!!!`;
-                         setErro(errorFetch)
+                         setError(errorFetch)
+                         setSpinner("")
                     })
                }
              /***************DISPLAY RESULTS API OR ERROR************/
        const resultat = error===""?<Card product={product}/>:<ErrorApi/>
 
-    /******************* Menu SLIDE START*******************/
-    $("#menu-close").click(function (e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    /******************* FUNCTION Menu SLIDE END****************/
+       const loading =()=>(
+           <Spinner animation="border" role="status">
+               <span className="sr-only">Loading...</span>
+           </Spinner>)
+     const affich = !resultat?loading():resultat
 
     /**************FUNCTION FOR PAGINATION ************/
        const getDataPage1 =()=> {
@@ -61,10 +62,21 @@ function App() {
         const getDataPage8 =()=> {
            fetchApi(800,821)
         }
+    /******************* Menu SLIDE START*******************/
+    $("#menu-close").click(function (e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    /******************* FUNCTION Menu SLIDE END*************/
 
        return (
            <div className="App container">
                {/* PAGINATION*/}
+
                <nav aria-label="Page navigation example d-flex justify-content-center">
                 <ul className="pagination">
                     <li className="page-item"><input className="page-link" type="button" value="Pages "/></li>
@@ -85,12 +97,19 @@ function App() {
                     <li className="page-item"><input className="page-link" type="button" value="8"
                                                      onClick={getDataPage8}/></li>
                 </ul>
+                   <div className="row my-2 d-flex justify-content-center justify-content-lg-around api " style={{height:"39px"}}>
+                       {spinner}
+                   </div>
             </nav>
                {/****************************LIST OF PRODUCTS************************/}
+
                <div className="row d-flex justify-content-center justify-content-lg-around api ">
                    {resultat}
                </div>
            </div>
+
+
+
     );
 }
 
