@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import $ from 'jquery'
 import 'bootstrap'
 import Spinner from "reactstrap/es/Spinner";
@@ -31,19 +31,14 @@ function App() {
             })
     }
 
-    /***************DISPLAY RESULTS API OR ERROR************/
-    const resultat = error === "" ? <Card product={product}/> : <ErrorApi/>
-
-    const loading = () => (
-        <Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-        </Spinner>)
-    const affich = !resultat ? loading() : resultat
 
     /**************FUNCTION FOR PAGINATION ************/
-    const getDataPage1 = () => {
+  function getDataPage1  () {
         fetchApi(0, 99)
     }
+    useEffect(()=>{
+        getDataPage1()
+    },[])
     const getDataPage2 = () => {
         fetchApi(100, 199)
     }
@@ -65,6 +60,17 @@ function App() {
     const getDataPage8 = () => {
         fetchApi(800, 821)
     }
+    /***************DISPLAY RESULTS API OR ERROR************/
+    const acceuil =error === ""? <Card product={product}/> :<ErrorApi/>
+
+    const resultat = error === "" ? <Card product={product}/> : <ErrorApi/>
+
+    const loading = () => (
+        <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+        </Spinner>)
+    /* const affich = !resultat ? loading() : resultat*/
+
     /******************* Menu SLIDE START*******************/
     $("#menu-close").click(function (e) {
         e.preventDefault();
@@ -107,7 +113,7 @@ function App() {
             </nav>
             {/****************************LIST OF PRODUCTS************************/}
 
-            <div className="row d-flex justify-content-center justify-content-lg-around api ">
+            <div className="row d-flex justify-content-center justify-content-lg-around api">
                 {resultat}
             </div>
         </div>

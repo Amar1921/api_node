@@ -1,19 +1,44 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import img from "../Mockup/shop.png";
 import fav from "../Mockup/heart.svg";
 
 function Card(props) {
+    let [arrayFav, setArrayFav] = useState([])
     function AddToFavourites(e) {
-        e.preventDefault()
-        /*  localStorage.setItem("id",e.props.)
-          console.log(localStorage.getItem("id"))*/
+       //let arrayFav = []
+
+       if( e.target.style.backgroundColor === "white"){
+           e.target.style.backgroundColor = "red"
+           const id = e.target.id
+           console.log(e.target.id)
+           console.log(props.product[id-1])
+           const data = props.product
+           setArrayFav([data])
+
+
+       }else {
+           const id = e.target.id
+           e.target.style.backgroundColor = "white"
+        console.log(e.target.style)
+           console.log(e.target.id)
+           console.log(props.product[id-1])
+       }
+      /*  console.log(e.target.id)
+        console.log(props.product[id])
+*/
     }
+    function displayFav() {
+        console.log(arrayFav)
+    }
+    useEffect(()=>{
+        displayFav()
+    })
 
     return (
-        props.product.map((prod, index) => (
+        props.product.map((prod, id) => (
                 <div
                     className="col-8 col-sm-5 col-md-3 my-2 mx-1  d-flex flex-column justify-content-between cardImage card "
-                    key={index}>
+                    key={prod.id}>
                     <img src={img} className="" alt="logo" style={{width: "auto", height: "100px"}}/>
                     <div className="overflow-hidden rounded">
                         {/*<p className="card-text"><span style={{fontWeight:"bold"}}>Retailer </span> {prod.retailer}</p>
@@ -24,7 +49,7 @@ function Card(props) {
                         <p className="card-text" style={{fontWeight: "bold"}}>{prod.category}</p>
                     </div>
                     <div className="d-flex justify-content-start pl-2 py-2">
-                        <img src={fav} alt="fav" onClick={AddToFavourites}/>
+                        <img src={fav} alt="fav" onClick={AddToFavourites} style={{background:"red"}} id={prod.id}/>
                     </div>
                 </div>
             )
