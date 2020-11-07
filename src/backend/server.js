@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const PORT = 3001;
+//const PORT = 4000;
 const bodyParser = require("body-parser");
 const data = require('./data.json')
 app.use(bodyParser.json());
@@ -19,6 +19,6 @@ app.get('/api/flyers', (req, res) => {
     res.set('Content-Type', 'text/json')
     res.json(data)
 })
+app.set('port', process.env.PORT || 4000)
 
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+app.listen(app.get('port') ,() => console.log(`Server running on port `+ app.get('port')))

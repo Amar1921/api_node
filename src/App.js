@@ -14,7 +14,7 @@ function App() {
     const [product, setProduct] = useState([]);
     const [spinner, setSpinner] = useState("");
     const [error, setError] = useState("")
-    const URL = 'http://localhost:3001/api/flyers';
+    const URL = 'http://localhost:4000/api/flyers';
 
 //
     /****************FUNCTION FETCH API***************/

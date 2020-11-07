@@ -10,6 +10,7 @@ ReactDOM.render(
     <Router>
         <Slider/>
         <Navbar/>
+        <Route path='/' component={App}/>
         <Route exact path='/api/flyers/' component={App}/>
     </Router>,
 
