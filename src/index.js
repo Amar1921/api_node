@@ -11,7 +11,7 @@ ReactDOM.render(
         <Slider/>
         <Navbar/>
         <Route path='/' component={App}/>
-        <Route exact path='/api/flyers/' component={App}/>
+       {/* <Route exact path='/api/flyers/' component={App}/>*/}
     </Router>,
 
     document.getElementById('root')

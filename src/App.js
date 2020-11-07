@@ -8,6 +8,7 @@ import axios from 'axios';
 import './style/style.css'
 import Card from "./components/Card";
 import {ErrorApi} from './components/header'
+import { useHistory} from 'react-router-dom'
 
 function App() {
 
@@ -16,7 +17,11 @@ function App() {
     const [error, setError] = useState("")
     const URL = 'http://localhost:4000/api/flyers';
 
-//
+    let history = useHistory();
+    useEffect(()=>{
+        history.push('/api/flyers')
+    },[])
+
     /****************FUNCTION FETCH API***************/
     async function fetchApi(a, b) {
         setError("")
@@ -61,15 +66,9 @@ function App() {
         fetchApi(800, 821)
     }
     /***************DISPLAY RESULTS API OR ERROR************/
-    const acceuil =error === ""? <Card product={product}/> :<ErrorApi/>
+  /*  const acceuil =error === ""? <Card product={product}/> :<ErrorApi/>*/
 
     const resultat = error === "" ? <Card product={product}/> : <ErrorApi/>
-
-    const loading = () => (
-        <Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-        </Spinner>)
-    /* const affich = !resultat ? loading() : resultat*/
 
     /******************* Menu SLIDE START*******************/
     $("#menu-close").click(function (e) {
