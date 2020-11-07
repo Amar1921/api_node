@@ -3,36 +3,32 @@ import img from "../Mockup/shop.png";
 import fav from "../Mockup/heart.svg";
 
 function Card(props) {
-    let [arrayFav, setArrayFav] = useState([])
+     let [arrayFav, setArrayFav] = useState([])
+    let arrayFavs = arrayFav
     function AddToFavourites(e) {
-       //let arrayFav = []
-
        if( e.target.style.backgroundColor === "white"){
            e.target.style.backgroundColor = "red"
-           const id = e.target.id
-           console.log(e.target.id)
-           console.log(props.product[id-1])
-           const data = props.product
-           setArrayFav([data])
-
+            const id = e.target.id
+         //  console.log(e.target.id)
+         //  console.log(props.product[id-1])
+             let arr = props.product[id-1]
+             return  arrayFavs.push(arr)
 
        }else {
            const id = e.target.id
            e.target.style.backgroundColor = "white"
-        console.log(e.target.style)
+         //  console.log(e.target.style)
            console.log(e.target.id)
            console.log(props.product[id-1])
        }
-      /*  console.log(e.target.id)
-        console.log(props.product[id])
-*/
+
     }
     function displayFav() {
-        console.log(arrayFav)
+        console.log(arrayFavs)
     }
     useEffect(()=>{
         displayFav()
-    })
+    },[])
 
     return (
         props.product.map((prod, id) => (
