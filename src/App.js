@@ -9,7 +9,7 @@ import './style/style.css'
 import Card from "./components/Card";
 import {ErrorApi} from './components/header'
 import { useHistory} from 'react-router-dom'
-
+import localStorage from "./localStorage";
 function App() {
 
     const [product, setProduct] = useState([]);
