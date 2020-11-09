@@ -7,8 +7,8 @@ export const Navbar = () => (
     </nav>
 );
 
-export const Slider = () => {
-    const data = [
+export const Slider = (props) => {
+   /* const data = [
         {
             "id": "0",
             "nom": "Dpiu Fresco"
@@ -25,7 +25,8 @@ export const Slider = () => {
             "id": "3",
             "nom": "Auchan"
         }
-    ]
+    ]*/
+    const data  = props
     return(
       <div className=" d-sm-block">
         <a className="btn btn-light btn-lg toggle" id="menu-toggle"><i className="fa fa-bars"> </i></a>
